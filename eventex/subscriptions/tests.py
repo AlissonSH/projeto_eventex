@@ -7,13 +7,13 @@ class SubscribeTest(TestCase):
         self.resp = self.client.get('/inscricao/')
 
     def test_get(self):
-        """Get /inscrição/must return status code 200"""
+        """Get /inscricao/ must retunr status code 200"""
         self.assertEqual(200, self.resp.status_code)
-        
-    def test_template(self):
-        """Must use subscriptions/subcription_form.html"""
-        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_form.html')
 
+    def test_template(self):
+        """Must use subscriptions/subscription_form.html"""
+        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_form.html')
+        
     def test_html(self):
         """Html must contain input tags"""
         self.assertContains(self.resp, '<form')
@@ -27,12 +27,11 @@ class SubscribeTest(TestCase):
         self.assertContains(self.resp, 'csrfmiddlewaretoken')
 
     def test_has_form(self):
-        """Cotext must have subscription form"""
+        """Context must have subscription form"""
         form = self.resp.context['form']
         self.assertIsInstance(form, SubscriptionForm)
 
-    def test_form_has_fields(self):
+    def test_form_hsd_fields(self):
         """Form must have 4 fields."""
         form = self.resp.context['form']
         self.assertSequenceEqual(['name', 'cpf', 'email', 'phone'], list(form.fields))
-
