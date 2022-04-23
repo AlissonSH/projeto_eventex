@@ -35,5 +35,5 @@ heroku: push
 heroku config:set SECRET_KEY='python contrib/secret_gen.py'
 heroku config:set DEBUG:False
 # configuro o email
-git pusg heroku master --force
+git push heroku master --force
 ```
